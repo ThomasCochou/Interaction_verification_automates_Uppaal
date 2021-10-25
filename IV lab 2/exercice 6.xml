@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+const bool UP = true;
+const bool DOWN = false;
+
+const bool ALICE = true;
+const bool BOB = false;
+
+bool turn = ALICE;
+
+bool flagAlice = DOWN;
+bool flagBob = DOWN;</declaration><template><name x="5" y="5">Alice</name><declaration>// Place local declarations here.
+</declaration><location id="id0" x="8" y="80"><name x="-2" y="50">W</name><urgent/></location><location id="id1" x="216" y="-264"><name x="206" y="-294">CS</name><urgent/></location><location id="id2" x="-152" y="-232"><name x="-162" y="-262">I</name><urgent/></location><init ref="id2"/><transition><source ref="id0"/><target ref="id1"/><label kind="guard" x="120" y="-88">flagBob == DOWN || turn == ALICE</label></transition><transition><source ref="id2"/><target ref="id0"/><label kind="assignment" x="-224" y="-48">flagAlice = UP, turn= BOB</label></transition><transition><source ref="id1"/><target ref="id2"/><label kind="assignment" x="-24" y="-240">flagAlice = DOWN</label></transition></template><template><name>Bob</name><location id="id3" x="16" y="168"><name x="6" y="138">W</name><urgent/></location><location id="id4" x="152" y="-104"><name x="142" y="-134">CS</name><urgent/></location><location id="id5" x="-136" y="-96"><name x="-146" y="-126">Input</name><urgent/></location><init ref="id5"/><transition><source ref="id3"/><target ref="id4"/><label kind="guard" x="24" y="2">flagAlice == DOWN || turn == BOB</label></transition><transition><source ref="id5"/><target ref="id3"/><label kind="assignment" x="-120" y="36">flagBob = UP, turn = ALICE</label></transition><transition><source ref="id4"/><target ref="id5"/><label kind="assignment" x="-52" y="-100">flagBob = DOWN</label></transition></template><system>// Place template instantiations here.
+alice = Alice();
+bob = Bob();
+
+// List one or more processes to be composed into a system.
+system alice, bob;</system></nta>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+const bool UP = true;
+const bool DOWN = false;
+
+bool flagAlice = DOWN;
+bool flagBob = DOWN;</declaration><template><name x="5" y="5">alice</name><declaration>// Place local declarations here.
+</declaration><location id="id0" x="-88" y="-40"><name x="-98" y="-70">Wait</name></location><location id="id1" x="72" y="-168"></location><location id="id2" x="72" y="-168"><name x="62" y="-198">CS</name></location><location id="id3" x="-264" y="-168"><name x="-274" y="-198">Init</name></location><init ref="id3"/><transition><source ref="id0"/><target ref="id1"/><label kind="guard" x="-68" y="-134">flagBob == DOWN</label><nail x="80" y="-48"/></transition><transition><source ref="id3"/><target ref="id0"/><label kind="assignment" x="-236" y="-104">flagAlice = UP</label><nail x="-256" y="-32"/></transition><transition><source ref="id1"/><target ref="id3"/><label kind="assignment" x="-156" y="-168">flagAlice = DOWN</label></transition></template><template><name>bob</name><location id="id4" x="-192" y="0"><name x="-202" y="-30">Wait</name></location><location id="id5" x="16" y="-112"><name x="6" y="-142">CS</name></location><location id="id6" x="-352" y="-96"><name x="-362" y="-126">Init</name></location><init ref="id6"/><transition><source ref="id4"/><target ref="id5"/><label kind="guard" x="-148" y="-86">flagAlice == DOWN</label><nail x="24" y="-16"/></transition><transition><source ref="id6"/><target ref="id4"/><label kind="assignment" x="-332" y="-48">flagBob = UP</label><nail x="-344" y="8"/></transition><transition><source ref="id5"/><target ref="id6"/><label kind="assignment" x="-228" y="-104">flagBob = DOWN</label></transition></template><system>// Place template instantiations here.
+alice = Alice();
+bob = Bob();
+
+// List one or more processes to be composed into a system.
+system alice, bob;</system></nta>

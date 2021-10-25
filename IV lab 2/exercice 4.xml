@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+const bool UP = true;
+const bool DOWN = false;
+
+bool flagAlice = DOWN;
+bool flagBob = DOWN;</declaration><template><name x="5" y="5">Alice</name><declaration>// Place local declarations here.
+</declaration><location id="id0" x="-16" y="8"><name x="-26" y="-22">W</name><urgent/></location><location id="id1" x="112" y="-160"><name x="102" y="-190">CS</name><urgent/></location><location id="id2" x="-96" y="-136"><name x="-106" y="-166">I</name><urgent/></location><init ref="id2"/><transition><source ref="id0"/><target ref="id1"/><label kind="guard" x="-12" y="-106">flagBob == DOWN</label></transition><transition><source ref="id2"/><target ref="id0"/><label kind="assignment" x="-116" y="-64">flagAlice = UP</label></transition><transition><source ref="id1"/><target ref="id2"/><label kind="assignment" x="-52" y="-148">flagAlice = DOWN</label></transition></template><template><name>Bob</name><location id="id3" x="0" y="32"><name x="-10" y="2">W</name><urgent/></location><location id="id4" x="72" y="-112"><name x="62" y="-142">CS</name><urgent/></location><location id="id5" x="-120" y="-112"><name x="-130" y="-142">I</name><urgent/></location><init ref="id5"/><transition><source ref="id3"/><target ref="id5"/><label kind="guard" x="-120" y="-70">flagAlice == UP</label><label kind="assignment" x="-120" y="-40">flagBob = DOWN</label><nail x="-160" y="72"/><nail x="-160" y="72"/></transition><transition><source ref="id4"/><target ref="id5"/><label kind="assignment" x="-84" y="-112">flagBob = DOWN</label></transition><transition><source ref="id3"/><target ref="id4"/><label kind="guard" x="-24" y="-70">flagAlice == DOWN</label></transition><transition><source ref="id5"/><target ref="id3"/><label kind="assignment" x="-120" y="-40">flagBob = UP</label></transition></template><system>// Place template instantiations here.
+alice = Alice();
+bob = Bob();
+
+// List one or more processes to be composed into a system.
+system alice, bob;</system></nta>
